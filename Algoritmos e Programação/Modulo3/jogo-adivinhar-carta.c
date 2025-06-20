@@ -1,4 +1,3 @@
-
 #include <stdio.h>  
 #include <stdlib.h> 
 #include <time.h>   
@@ -12,6 +11,7 @@ int main() {
     int erros = 0;
     int jogarNovamente = 1;
 
+    // Arte realizada em https://www.asciiart.eu/text-to-ascii-art
     printf(".-----------------------------------------------------------------------------.\n");
     printf("|    _       _ _       _       _                                   _        _ |\n");
     printf("|   / \\   __| (_)_   _(_)_ __ | |__   ___    __ _    ___ __ _ _ __| |_ __ _| ||\n");
