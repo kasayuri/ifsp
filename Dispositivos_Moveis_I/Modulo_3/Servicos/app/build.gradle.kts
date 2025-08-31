@@ -40,4 +40,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    //Instalação de bibliotecas
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
 }
