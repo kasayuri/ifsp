@@ -50,12 +50,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void consultar(String numeroCep){
+
+        TextView tvInfo = findViewById(R.id.tvInfo);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constantes.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         InvertextoApi api = retrofit.create(InvertextoApi.class);
+
         Call<Logradouro> call = api.getLogradouro(
                 numeroCep,
                 Constantes.TOKEN
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Logradouro logradouro = response.body();
                     // Exibir no tvInfo as informações do logradouro
-                    TextView tvInfo = findViewById(R.id.tvInfo);
+                    tvInfo.setText(logradouro.formatar());
 
                 } else {
                     // retornar erro

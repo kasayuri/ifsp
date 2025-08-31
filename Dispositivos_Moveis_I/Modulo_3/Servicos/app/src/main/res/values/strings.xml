@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Servicos</string>
+    <string name="app_name">Serviços</string>
     <string name="informacoes">Informações</string>
     <string name="digite_o_cep">Digite o cep para buscar o endereço</string>
     <string name="buscar">Buscar</string>

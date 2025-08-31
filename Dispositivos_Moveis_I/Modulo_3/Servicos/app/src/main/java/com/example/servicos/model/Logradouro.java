@@ -36,4 +36,13 @@ public class Logradouro {
     public String getIbge() {
         return ibge;
     }
+
+    public String formatar(){
+        return this.street.concat("\n")
+                .concat(this.neighborhood)
+                .concat("\n")
+                .concat(this.city)
+                .concat(" - ")
+                .concat(this.state);
+    }
 }

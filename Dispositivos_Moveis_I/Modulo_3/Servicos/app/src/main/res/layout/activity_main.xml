@@ -57,7 +57,7 @@
             android:layout_height="150dp"
             android:text="@string/informacoes"
             android:textAlignment="center"
-            android:textSize="16dp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
