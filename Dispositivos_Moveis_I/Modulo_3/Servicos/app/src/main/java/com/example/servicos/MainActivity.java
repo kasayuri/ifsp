@@ -1,6 +1,10 @@
 package com.example.servicos;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +34,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Cria as variáveis ligadas a View (xml)
+        EditText etCep = findViewById(R.id.etCep);
+        Button btBuscar = findViewById(R.id.btBuscar);
+
+        // Adiciona um listener no botão
+        btBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                String numeroCep = etCep.getText().toString();
+                consultar(numeroCep);
+            }
+        });
     }
 
     private void consultar(String numeroCep){
@@ -51,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Logradouro logradouro = response.body();
                     // Exibir no tvInfo as informações do logradouro
+                    TextView tvInfo = findViewById(R.id.tvInfo);
 
                 } else {
                     // retornar erro
