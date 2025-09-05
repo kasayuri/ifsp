@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    private ProgressBar progressBar;
+    private Button btBuscar;
+    private TextView tvInfo;
+    private EditText etCep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Cria as variáveis ligadas a View (xml)
-        EditText etCep = findViewById(R.id.etCep);
-        Button btBuscar = findViewById(R.id.btBuscar);
+        etCep = findViewById(R.id.etCep);
+        btBuscar = findViewById(R.id.btBuscar);
+        progressBar = findViewById(R.id.progressBar);
+        tvInfo = findViewById(R.id.tvInfo);
 
         // Adiciona um listener no botão
         btBuscar.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void consultar(String numeroCep){
-
-        TextView tvInfo = findViewById(R.id.tvInfo);
+        progressBar.setVisibility(View.VISIBLE);
+        btBuscar.setEnabled(false);
+        tvInfo.setText("");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constantes.BASE_URL)
@@ -65,11 +73,17 @@ public class MainActivity extends AppCompatActivity {
                 Constantes.TOKEN
         );
 
+        progressBar.setVisibility(View.VISIBLE);
+        btBuscar.setEnabled(false);
+        tvInfo.setText("");
+
         call.enqueue(new Callback<Logradouro>() {
             @Override
             public void onResponse(Call<Logradouro> call, Response<Logradouro> response) {
-                if (response.isSuccessful()){
+                progressBar.setVisibility(View.GONE);
+                btBuscar.setEnabled(true);
 
+                if (response.isSuccessful()){
                     Logradouro logradouro = response.body();
                     // Exibir no tvInfo as informações do logradouro
                     tvInfo.setText(logradouro.formatar());
@@ -85,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Logradouro> call, Throwable throwable) {
+                progressBar.setVisibility(View.GONE);
+                btBuscar.setEnabled(true);
+
                 Toast.makeText(
                         MainActivity.this,
                         "Verifique sua conexão com a internet",
