@@ -1,3 +1,14 @@
+import java.util.Properties
+
+val localProperties = Properties() // Use val for read-only properties
+val localPropertiesFile = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.reader().use { reader -> // Use .reader() and .use for resource management
+        localProperties.load(reader)
+    }
+}
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -12,6 +23,14 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+
+        val apiBaseUrl = localProperties.getProperty("API_BASE_URL")
+        val apiTokenCep = localProperties.getProperty("API_TOKEN_CEP")
+        val apiTokenCurrency = localProperties.getProperty("API_TOKEN_CURRENCY")
+
+        buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
+        buildConfigField("String", "API_TOKEN_CEP", "\"$apiTokenCep\"")
+        buildConfigField("String", "API_TOKEN_CURRENCY", "\"$apiTokenCurrency\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,6 +47,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures{
+        buildConfig = true
     }
 }
 

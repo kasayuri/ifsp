@@ -80,7 +80,7 @@ public class CurrencyActivity extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constantes.BASE_URL)
+                .baseUrl(BuildConfig.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -88,7 +88,7 @@ public class CurrencyActivity extends AppCompatActivity {
 
         Call<Map<String, Cotacao>> call = api.getCotacao(
                 moeda,
-                Constantes.TOKEN_CURRENCY
+                BuildConfig.API_TOKEN_CURRENCY
         );
 
         call.enqueue(new Callback<Map<String, Cotacao>>() {

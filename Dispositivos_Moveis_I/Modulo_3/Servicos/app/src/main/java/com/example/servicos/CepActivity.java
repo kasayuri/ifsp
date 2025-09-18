@@ -62,7 +62,7 @@ public class CepActivity extends AppCompatActivity {
         tvInfo.setText("");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constantes.BASE_URL)
+                .baseUrl(BuildConfig.API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -70,7 +70,7 @@ public class CepActivity extends AppCompatActivity {
 
         Call<Logradouro> call = api.getLogradouro(
                 numeroCep,
-                Constantes.TOKEN_CEP
+                BuildConfig.API_TOKEN_CEP
         );
 
         call.enqueue(new Callback<Logradouro>() {
