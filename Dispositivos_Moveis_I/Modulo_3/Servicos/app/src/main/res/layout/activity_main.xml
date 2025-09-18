@@ -23,7 +23,8 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/imagem_pagina" />
+            app:srcCompat="@drawable/imagem_pagina"
+            android:contentDescription="@null" />
 
         <TextView
             android:id="@+id/textView"
