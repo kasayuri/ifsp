@@ -24,10 +24,15 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        val apiBaseUrl = localProperties.getProperty("API_BASE_URL")
+        val apiBaseUrlRaw = localProperties.getProperty("API_BASE_URL")
         val apiTokenCep = localProperties.getProperty("API_TOKEN_CEP")
         val apiTokenCurrency = localProperties.getProperty("API_TOKEN_CURRENCY")
 
+        if (apiBaseUrlRaw == null || apiTokenCep == null || apiTokenCurrency == null) {
+            throw GradleException("Missing required API configuration in local.properties. Please ensure API_BASE_URL, API_TOKEN_CEP, and API_TOKEN_CURRENCY are set.")
+        }
+        // Normalize API_BASE_URL to ensure trailing slash
+        val apiBaseUrl = if (apiBaseUrlRaw.endsWith("/")) apiBaseUrlRaw else apiBaseUrlRaw + "/"
         buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
         buildConfigField("String", "API_TOKEN_CEP", "\"$apiTokenCep\"")
         buildConfigField("String", "API_TOKEN_CURRENCY", "\"$apiTokenCurrency\"")
