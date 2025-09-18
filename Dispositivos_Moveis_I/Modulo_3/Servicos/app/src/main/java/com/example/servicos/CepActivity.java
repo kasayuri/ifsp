@@ -23,7 +23,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class CepActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private Button btBuscar;
     private TextView tvInfo;
@@ -70,12 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         Call<Logradouro> call = api.getLogradouro(
                 numeroCep,
-                Constantes.TOKEN
+                Constantes.TOKEN_CEP
         );
-
-        progressBar.setVisibility(View.VISIBLE);
-        btBuscar.setEnabled(false);
-        tvInfo.setText("");
 
         call.enqueue(new Callback<Logradouro>() {
             @Override
@@ -91,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // retornar erro
                     Toast.makeText(
-                            MainActivity.this,
+                            CepActivity.this,
                             "Erro ao buscar informações, verifique o CEP",
                             Toast.LENGTH_LONG).show();
                 }
@@ -103,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 btBuscar.setEnabled(true);
 
                 Toast.makeText(
-                        MainActivity.this,
+                        CepActivity.this,
                         "Verifique sua conexão com a internet",
                         Toast.LENGTH_LONG).show();
             }
