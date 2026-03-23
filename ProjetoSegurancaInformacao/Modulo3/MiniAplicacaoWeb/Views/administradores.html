@@ -1,0 +1,17 @@
+<div class='container mt-5 text-center'>
+    <div class='card shadow-sm'>
+        <div class='card-header bg-primary text-white'>
+            <h3>Área Administrativa</h3>
+        </div>
+        <div class='card-body'>
+            <p class='lead'>Página de acesso restrito aos usuários administradores.</p>
+            <div class='mb-4'>
+                <a href='/cadastro' class='btn btn-outline-primary'>Ir para Cadastro de Usuários</a>
+            </div>
+            <form method='post' action='/logout'>
+                <input type='hidden' name='{{TokenName}}' value='{{TokenValue}}' />
+                <button class='btn btn-secondary'>Encerrar sessão</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class='row justify-content-center'>
+    <div class='col-md-4'>
+        <div class='card shadow-sm'>
+            <div class='card-header text-center'>
+                <h3>Login</h3>
+            </div>
+            <div class='card-body'>
+                <form method='post' action='/login'>
+                    <input type='hidden' name='{{TokenName}}' value='{{TokenValue}}' />
+                    <div class='mb-3'>
+                        <label class='form-label'>Usuário:</label>
+                        <input class='form-control' name='login' required />
+                    </div>
+                    <div class='mb-3'>
+                        <label class='form-label'>Senha:</label>
+                        <input class='form-control' name='senha' type='password' required />
+                    </div>
+                    <button class='btn btn-primary w-100' type='submit'>Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
